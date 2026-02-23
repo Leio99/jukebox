@@ -21,7 +21,7 @@
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-regular-svg-icons": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
-    "dolfo-angular": "^1.199.0",
+    "dolfo-angular": "^1.201.0",
     "lodash": "^4.17.23",
     "rxjs": "~7.8.2",
     "zone.js": "^0.16.0"
