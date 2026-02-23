@@ -1,0 +1,62 @@
+{
+    "loading": "Caricamento in corso...",
+    "dateTimeFormat": "dd/MM/yyyy HH:mm",
+    "starting": {
+        "login": "Caricamento sessione"
+    },
+    "dialog": {
+        "ok": "Ok",
+        "close": "Chiudi",
+        "error": "Errore",
+        "errorApi": "Errore durante la chiamata API",
+        "no": "No",
+        "confirm": "Sì"
+    },
+    "notification": {
+        "success": "Successo",
+        "error": "Errore",
+        "warning": "Attenzione",
+        "info": "Info"
+    },
+    "form": {
+        "requiredError": "Campo obbligatorio!",
+        "required": "Obbligatorio"
+    },
+    "grid": {
+        "actions": "Azioni",
+        "showActions": "Mostra azioni",
+        "noResults": "Nessun risultato"
+    },
+    "join": {
+        "roomId": "Codice stanza",
+        "doJoin": "Unisciti",
+        "newRoom": "Nuova stanza"
+    },
+    "search": {
+        "filter": "Cerca un video",
+        "addVideo": "Aggiungi alla coda",
+        "play": "Riproduci ora"
+    },
+    "playlist": {
+        "noSongPlaying": "Nessun video in riproduzione",
+        "noSongs": "Nessun video in coda",
+        "removeSong": "Rimuovi",
+        "playingOnOwnerDevice": "Le canzoni vengono riprodotte sul dispositivo del proprietario",
+        "roomCode": "Codice stanza"
+    },
+    "room": {
+        "share": "Invita amici",
+        "shareTitle": "Condividi codice stanza",
+        "copy": "Copia",
+        "newOwner": "Il proprietario ha lasciato la stanza, ora sei tu il nuovo gestore della playlist!",
+        "copied": "Codice copiato!"
+    },
+    "autocomplete":{
+        "loading": "Ricerca...",
+        "noResults": "Nessun risultato"
+    },
+    "errors": {
+        "roomNotFound": "Stanza non trovata!",
+        "songDuplicate": "Canzone già presente in playlist! Aspetta che finisca..."
+    }
+}

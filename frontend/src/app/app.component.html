@@ -1,0 +1,25 @@
+@if(!loadingMessage()){
+    <div class="main-container">
+        <div class="header">
+            <ng-container *ngTemplateOutlet="logo"></ng-container>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+}@else{
+    <div class="screen-loader">
+        <div class="loader-inner">
+            <ng-container *ngTemplateOutlet="logo"></ng-container>
+            <span>{{ loadingMessage() }}</span>
+            <div class="bar">
+                <span [ngStyle]="{ width: percentage + '%' }"></span>
+            </div>
+        </div>
+    </div>
+}
+
+<ng-container #multiContainer></ng-container>
+
+<ng-template #logo>
+    <img src="assets/images/app_logo.png" alt="app-logo" class="logo" />
+</ng-template>

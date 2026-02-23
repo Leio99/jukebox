@@ -1,0 +1,64 @@
+<dolfo-button color="info" [dolfoTooltip]="'room.share' | translate" (onClick)="share()">
+    <fa-icon [icon]="ICONS.faShare"></fa-icon> {{ "room.share" | translate }}
+</dolfo-button>
+
+<form [formGroup]="form" class="search-form">
+    <dolfo-autocomplete formControlName="song" [config]="config" [label]="'search.filter' | translate" [resultTemplate]="optionTemplate"></dolfo-autocomplete>
+    <dolfo-button [dolfoTooltip]="'search.addVideo' | translate" (onClick)="addSong()" [disabled]="!form.get('song').value">
+        <fa-icon [icon]="ICONS.faCirclePlus"></fa-icon>
+    </dolfo-button>
+    <dolfo-button color="success" [dolfoTooltip]="'search.play' | translate" [disabled]="!form.get('song').value" (onClick)="addSongAndPlay()">
+        <fa-icon [icon]="ICONS.faCirclePlay"></fa-icon>
+    </dolfo-button>
+</form>
+
+<div class="jukebox">
+    @let songs = songs$ | async;
+    @let currentUrl = currentPlay();
+    @let owner = isOwner();
+
+    <div class="player">
+        @if(currentUrl){
+            @if(owner){
+                <youtube-player #player [videoId]="currentUrl" [playerVars]="{
+                    autoplay: 1
+                }" (stateChange)="cambiaStato($event)" [height]="390"></youtube-player>
+            }@else {
+                <div class="player-placeholder">
+                    <fa-icon [icon]="ICONS.farCirclePlay" animation="spin"></fa-icon>
+                    {{ "playlist.playingOnOwnerDevice" | translate }}
+                </div>
+            }
+        }@else {
+            {{ "playlist.noSongPlaying" | translate }}
+        }
+    </div>
+    <div class="playlist">
+        @for(song of songs; track song.id){
+            <ng-container [ngTemplateOutlet]="songItem" [ngTemplateOutletContext]="{ item: song, actions: true }"></ng-container>
+        }@empty {
+            {{ "playlist.noSongs" | translate }}
+        }
+    </div>
+</div>
+
+<ng-template #songItem let-item="item" let-actions="actions">
+    <div class="song-item" [class.current]="actions && currentPlay() === item.id">
+        <img [src]="item.thumbUrl" />
+
+        <div class="song-item-details">
+            <strong [innerHTML]="getSanitizedTitle(item.title)"></strong>
+            <small>{{ item.channelName }} • {{ item.datePublished | date: ('dateTimeFormat' | translate)}}</small>
+        </div>
+
+        @if(actions){
+            <div class="song-actions">
+                <fa-icon (click)="removeSong(item.id)" [icon]="ICONS.faMinusCircle" class="fg-error" [dolfoTooltip]="'playlist.removeSong' | translate"></fa-icon>
+            </div>
+        }
+    </div>
+</ng-template>
+
+<ng-template #optionTemplate let-item="item">
+    <ng-container [ngTemplateOutlet]="songItem" [ngTemplateOutletContext]="{ item: findOption(item) }"></ng-container>
+</ng-template>

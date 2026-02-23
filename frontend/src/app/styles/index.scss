@@ -1,0 +1,162 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:list";
+@import "dolfo-angular/styles/base";
+@import "misc/mixins";
+@import "misc/variables";
+@import "dolfo-angular/styles";
+@import "misc/variables";
+@import "misc/media";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700&display=swap");
+
+body{
+    font-family: "Nunito Sans";
+
+    .main-container{
+        padding: 1rem
+    }
+
+    .header{
+        @include relative;
+
+        .logo{
+            @include block;
+            width: 200px;
+            margin: 0 0 1rem
+        }
+
+        .lang-btn{
+            @include absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+
+            button{
+                border-radius: 50px
+            }
+        }
+    }
+
+    .loading, .empty{
+        @include text-center
+    }
+    
+    .screen-loader{
+        @include fixed;
+        @include centered-flex;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+
+        .loader-inner{
+            @include fixed;
+            @include centered-flex;
+            flex-direction: column;
+            margin: auto;
+            width: 60vw;
+            gap: 10px;
+
+            > img{
+                width: 100%
+            }
+
+            > .bar{
+                height: 7px;
+                width: 100%;
+                border-radius: 50px;
+                background-color: $secondary;
+                
+                > span{
+                    @include block;
+                    border-radius: 50px;
+                    height: 100%;
+                    background-color: $primary;
+                    transition: 0.3s ease;
+                }
+            }
+        }
+    }
+
+    .song-item{
+        @include flex;
+        @include align-center;
+        gap: 0.5rem;
+
+        img{
+            @include rounded;
+            height: 40px;
+            border: 1px solid $white
+        }
+
+        .song-item-details{
+            @include flex;
+            flex-direction: column;
+            line-height: 1em;
+            
+            small{
+                color: #777
+            }
+        }
+
+        .song-actions > *{
+            @include pointer;
+
+            &:not(:hover){
+                opacity: 0.7
+            }
+        }
+    }
+
+    .search-form{
+        @include flex;
+        gap: 10px;
+        align-items: flex-end;
+
+        dolfo-autocomplete{
+            flex: 1 0 auto;
+
+            .input-container{
+                margin: 0
+            }
+        }
+
+        dolfo-button button{
+            border-radius: 50px;
+            margin-bottom: 3px
+        }
+    }
+
+    .jukebox{
+        @include flex;
+        gap: 10px;
+        margin-top: 10px;
+        height: 390px;
+
+        .playlist{
+            overflow: auto
+        }
+
+        .player{
+            @include text-center;
+            flex: 1 1 auto;
+
+            .player-placeholder{
+                @include centered-flex;
+                @include rounded;
+                flex-direction: column;
+                background-color: $secondary;
+                height: 100%;
+
+                fa-icon{
+                    font-size: 50px
+                }
+            }
+        }
+    }
+
+    .footer{
+        @include text-center
+    }
+}

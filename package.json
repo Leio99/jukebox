@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "deps": "cd backend && npm i && cd ../frontend && npm i",
+        "start-server": "cd backend && npm run start-dev",
+        "start-client": "cd frontend && ng serve"
+    }
+}

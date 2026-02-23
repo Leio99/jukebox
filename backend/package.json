@@ -1,0 +1,41 @@
+{
+    "name": "proj-server",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "start-dev": "npx tsx watch src/index.ts",
+        "move-files": "npm run copy-langs",
+        "copy-langs": "shx mkdir dist/langs && shx cp -R src/langs/* dist/langs",
+        "build": "shx rm -rf dist && tsc && tsc-alias && npm run move-files",
+        "gen-cert": "mkdir cert && cd cert && openssl genrsa -out key.pem && openssl req -new -key key.pem -out csr.pem && openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem",
+        "check-ts": "tsc --noEmit"
+    },
+    "author": "Nardo",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.6",
+        "express": "^5.2.1",
+        "fast-xml-parser": "^5.3.5",
+        "http": "^0.0.1-security",
+        "https": "^1.0.0",
+        "jsonwebtoken": "^9.0.3",
+        "lodash": "^4.17.23",
+        "mysql": "^2.18.1",
+        "reflect-metadata": "^0.2.2",
+        "uuid": "^13.0.0",
+        "ws": "^8.19.0"
+    },
+    "devDependencies": {
+        "@types/basic-auth": "^1.1.8",
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.6",
+        "@types/jsonwebtoken": "^9.0.10",
+        "@types/lodash": "^4.17.23",
+        "@types/mysql": "^2.15.27",
+        "@types/uuid": "^11.0.0",
+        "@types/ws": "^8.18.1",
+        "shx": "^0.4.0",
+        "tsc-alias": "^1.8.16",
+        "typescript": "^5.9.3"
+    }
+}
