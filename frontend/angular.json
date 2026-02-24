@@ -100,7 +100,7 @@
                             ]
                         },
                         "production": {
-                            "baseHref": "/project/",
+                            "baseHref": "/jukebox/",
                             "progress": true,
                             "budgets": [
                                 {
