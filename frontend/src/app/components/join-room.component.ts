@@ -40,7 +40,7 @@ export class JoinRoomComponent extends Formable<User>{
 	protected override submit = (formValue: User) => this.authService.join$(formValue.roomId)
 
 	public newRoom = () => {
-		if(this.loading$.getValue())
+		if(this.loading$.getValue() || this.loadingRoom$.getValue())
 			return
 
 		this.loadingRoom$.next(true)

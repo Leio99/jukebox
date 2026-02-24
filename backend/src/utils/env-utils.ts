@@ -5,15 +5,15 @@ import { IConfig, IEnv } from "../interfaces/config"
 
 export const getCfgUrl = (dir: string) => dir + "config.xml"
 
-export const initENV = (dir: string, bypass = false) => new Promise<IConfig>((resolve, reject) => {
+export const initENV = (dir: string, bypass = false) => new Promise<void>((resolve, reject) => {
     const path = getCfgUrl(dir)
 
     fs.readFile(path, "utf-8", (err, data) => {
         if(err){
-            return reject({
-                message: "File di configurazione non trovato:\n" + path,
-                missing: true
-            })
+            process.env.SERVER_PORT = "3001"
+
+            console.log("Configurazione mancante, uso la porta di default (3001)")
+            return resolve()
         }
 
         const parser = new XMLParser({
@@ -24,32 +24,26 @@ export const initENV = (dir: string, bypass = false) => new Promise<IConfig>((re
         config = parser.parse(data) as IConfig
 
         if(bypass)
-            return resolve(config)
+            return resolve()
 
         if(!config.configuration)
             reject({ message: "Nessuna configurazione trovata!" })
         else if(!config.configuration.server)
             reject({ message: "Nessuna configurazione del server!" })
-        else if(!config.configuration.server.port || !config.configuration.server.url)
+        else if(!config.configuration.server.port)
             reject({ message: "Configurazione del server incompleta!" })
         else{
             const { server } = config.configuration
 
             setENVServer(server)
 
-            resolve(config)
+            resolve()
         }
     })  
 })
 
 const setENVServer = (config: IConfig["configuration"]["server"]) => {
     process.env.SERVER_PORT = config.port.toString()
-    process.env.SERVER_URL = config.url
-    
-    if(config.url.toLowerCase().startsWith("https"))
-        process.env.HTTPS = "true"
-    else
-        delete process.env.HTTPS
 }
 
 export const getEnv = (): IEnv => {
@@ -57,7 +51,6 @@ export const getEnv = (): IEnv => {
 
     return _.pick(env, [
         "HTTPS",
-        "SERVER_PORT",
-        "SERVER_URL"
+        "SERVER_PORT"
     ])
 }

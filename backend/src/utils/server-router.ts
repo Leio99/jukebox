@@ -56,11 +56,4 @@ export class ServerRouter {
 
         server.listen(SERVER_PORT, () => console.log(`Server HTTP${addS} e WS in ascolto sulla porta ${SERVER_PORT}!`))
     }
-
-    public static getServerURL = () => {
-        const { SERVER_URL, SERVER_PORT } = getEnv()
-        return `${SERVER_URL}:${SERVER_PORT}`
-    }
-
-    public static checkAlive = () => fetch(this.getServerURL())
 }
