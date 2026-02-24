@@ -30,11 +30,7 @@ export const initENV = (dir: string, bypass = false) => new Promise<IConfig>((re
             reject({ message: "Nessuna configurazione trovata!" })
         else if(!config.configuration.server)
             reject({ message: "Nessuna configurazione del server!" })
-        else if(
-            !config.configuration.server.port ||
-            !config.configuration.server.tokenKey ||
-            !config.configuration.server.url
-        )
+        else if(!config.configuration.server.port || !config.configuration.server.url)
             reject({ message: "Configurazione del server incompleta!" })
         else{
             const { server } = config.configuration
@@ -48,7 +44,6 @@ export const initENV = (dir: string, bypass = false) => new Promise<IConfig>((re
 
 const setENVServer = (config: IConfig["configuration"]["server"]) => {
     process.env.SERVER_PORT = config.port.toString()
-    process.env.SECRET_KEY = config.tokenKey
     process.env.SERVER_URL = config.url
     
     if(config.url.toLowerCase().startsWith("https"))
@@ -63,7 +58,6 @@ export const getEnv = (): IEnv => {
     return _.pick(env, [
         "HTTPS",
         "SERVER_PORT",
-        "SECRET_KEY",
         "SERVER_URL"
     ])
 }

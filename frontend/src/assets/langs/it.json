@@ -1,8 +1,9 @@
 {
     "loading": "Caricamento in corso...",
     "dateTimeFormat": "dd/MM/yyyy HH:mm",
+    "siteTitle": "Jukebox JAM",
     "starting": {
-        "login": "Caricamento sessione"
+        "translations": "Caricamento traduzioni"
     },
     "dialog": {
         "ok": "Ok",
@@ -30,7 +31,8 @@
     "join": {
         "roomId": "Codice stanza",
         "doJoin": "Unisciti",
-        "newRoom": "Nuova stanza"
+        "newRoom": "Nuova stanza",
+        "title": "Scelta stanza"
     },
     "search": {
         "filter": "Cerca un video",
@@ -42,7 +44,8 @@
         "noSongs": "Nessun video in coda",
         "removeSong": "Rimuovi",
         "playingOnOwnerDevice": "Le canzoni vengono riprodotte sul dispositivo del proprietario",
-        "roomCode": "Codice stanza"
+        "roomCode": "Codice stanza",
+        "title": "Playlist di gruppo"
     },
     "room": {
         "share": "Invita amici",

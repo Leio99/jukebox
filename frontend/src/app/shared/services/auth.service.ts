@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from "rxjs"
 import { environment } from "../../../environments/environment"
 import { JOIN_PATH, ROOT_PATH } from "../../app.routes"
 import { User, WsMessage, WsMessageType } from "../interfaces"
+import { CustomDialogService } from "./custom-dialog.service"
 
 @Injectable({
     providedIn: "root"
@@ -13,6 +14,7 @@ export class AuthService{
     private router = inject(Router)
     private notificationService = inject(NotificationService)
     private translateService = inject(TranslateService)
+    private customDialogService = inject(CustomDialogService)
     private user$ = new BehaviorSubject<User>(null)
     private ws: WebSocket
     
@@ -64,6 +66,7 @@ export class AuthService{
     public sendMessage = (type: WsMessageType, data: any) => this.ws.send(JSON.stringify({ type, data }))
 
     public logout = () => {
+        this.customDialogService.closeLatestDialog()
         this.user$.next(null)
         this.checkCurrentRoute()
     }

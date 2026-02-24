@@ -1,6 +1,7 @@
 import * as http from "http"
 import * as https from "https"
 import _ from "lodash"
+import randomatic from "randomatic"
 import { v4 } from "uuid"
 import { WebSocketServer } from "ws"
 import { Rooms } from "../interfaces/room"
@@ -33,7 +34,7 @@ export class WsServer{
                 client.send({
                     type: WsMessageType.ERROR,
                     data: { msg: "roomNotFound" }
-                })
+                }, false)
                 return
             }
 
@@ -44,7 +45,11 @@ export class WsServer{
             if(roomId)
                 this.rooms[roomId].users.push({ id: userId, owner: false })
             else{
-                roomId = v4()
+                roomId = randomatic("A0", 6)
+
+                while(Object.keys(this.rooms).includes(roomId))
+                    roomId = randomatic("A0", 6)
+
                 this.rooms[roomId] = { users: [{ id: userId, owner: true }], songs: [] }
             }
 

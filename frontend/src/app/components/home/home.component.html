@@ -6,9 +6,11 @@
     <dolfo-autocomplete formControlName="song" [config]="config" [label]="'search.filter' | translate" [resultTemplate]="optionTemplate"></dolfo-autocomplete>
     <dolfo-button [dolfoTooltip]="'search.addVideo' | translate" (onClick)="addSong()" [disabled]="!form.get('song').value">
         <fa-icon [icon]="ICONS.faCirclePlus"></fa-icon>
+        <span>{{ "search.addVideo" | translate }}</span>
     </dolfo-button>
     <dolfo-button color="success" [dolfoTooltip]="'search.play' | translate" [disabled]="!form.get('song').value" (onClick)="addSongAndPlay()">
         <fa-icon [icon]="ICONS.faCirclePlay"></fa-icon>
+        <span>{{ "search.play" | translate }}</span>
     </dolfo-button>
 </form>
 
@@ -25,7 +27,7 @@
                 }" (stateChange)="cambiaStato($event)" [height]="390"></youtube-player>
             }@else {
                 <div class="player-placeholder">
-                    <fa-icon [icon]="ICONS.farCirclePlay" animation="spin"></fa-icon>
+                    <fa-icon [icon]="ICONS.faMusic" animation="spin"></fa-icon>
                     {{ "playlist.playingOnOwnerDevice" | translate }}
                 </div>
             }

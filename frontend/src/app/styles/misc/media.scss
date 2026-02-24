@@ -1,0 +1,28 @@
+@media screen and (max-width: 1020px){
+    .join-container, .jukebox{
+        flex-direction: column;
+        height: auto !important;
+
+        .playlist{
+            max-height: 400px
+        }
+    }
+
+    .search-form{
+        dolfo-autocomplete{
+            width: 100%
+        }
+
+        dolfo-button{
+            flex: 1 1 auto;
+            
+            button{
+                width: 100%;
+
+                span{
+                    display: inline-block !important
+                }
+            }
+        }
+    }
+}

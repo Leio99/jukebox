@@ -5,8 +5,7 @@ import { FormControl, FormGroup } from "@angular/forms"
 import { DomSanitizer } from "@angular/platform-browser"
 import { YouTubePlayer, } from "@angular/youtube-player"
 import { FaIconComponent } from "@fortawesome/angular-fontawesome"
-import { faCirclePlay as farCirclePlay } from "@fortawesome/free-regular-svg-icons"
-import { faCirclePlay, faCirclePlus, faMinusCircle, faShare } from "@fortawesome/free-solid-svg-icons"
+import { faCirclePlay, faCirclePlus, faMinusCircle, faMusic, faShare } from "@fortawesome/free-solid-svg-icons"
 import { AutocompleteConfig, ComboOption, DialogService, DirectivesModule, FormModule, LayoutModule, NotificationService, Subscriptable, TranslatePipe, TranslateService } from "dolfo-angular"
 import { filter, map, Observable } from "rxjs"
 import { WsMessageType } from "../../shared/interfaces"
@@ -22,7 +21,7 @@ import { AuthService } from "../../shared/services"
 export class HomeComponent extends Subscriptable{
 	@ViewChild("player") player: YouTubePlayer
 	private readonly API_KEY = "AIzaSyDgHFW4Gtv7wPzQsiQ60rT0JSm_6GRP-bA"
-	public readonly ICONS = { faCirclePlay, farCirclePlay, faCirclePlus, faMinusCircle, faShare }
+	public readonly ICONS = { faCirclePlay, faMusic, faCirclePlus, faMinusCircle, faShare }
 
 	public currentPlay = signal<string>(null)
 	public isOwner = signal(false)

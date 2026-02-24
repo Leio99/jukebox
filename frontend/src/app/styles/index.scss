@@ -11,6 +11,8 @@
 
 body{
     font-family: "Nunito Sans";
+    height: 100dvh;
+    overflow: auto;
 
     .main-container{
         padding: 1rem
@@ -22,7 +24,7 @@ body{
         .logo{
             @include block;
             width: 200px;
-            margin: 0 0 1rem
+            margin: 0 auto 1rem
         }
 
         .lang-btn{
@@ -100,11 +102,48 @@ body{
             }
         }
 
-        .song-actions > *{
-            @include pointer;
+        .song-actions{
+            margin-left: auto;
 
-            &:not(:hover){
-                opacity: 0.7
+            > *{
+                @include pointer;
+
+                &:not(:hover){
+                    opacity: 0.7
+                }
+            }
+        }
+    }
+
+    .join-container{
+        @include flex;
+        gap: 1rem;
+
+        > *{
+            @include centered-flex;
+            @include rounded;
+            flex: 0 1 50%;
+            flex-direction: column;
+
+            &.new-room{
+                @include pointer;
+                background-color: $success;
+                color: $white;
+                min-height: 200px;
+                font-size: 30px;
+
+                &:not(:hover){
+                    opacity: 0.8
+                }
+            }
+
+            &.join-room{
+                background-color: $secondary;
+                padding: 1rem;
+
+                > *, dolfo-button button{
+                    width: 100%
+                }
             }
         }
     }
@@ -113,6 +152,7 @@ body{
         @include flex;
         gap: 10px;
         align-items: flex-end;
+        flex-wrap: wrap;
 
         dolfo-autocomplete{
             flex: 1 0 auto;
@@ -124,7 +164,11 @@ body{
 
         dolfo-button button{
             border-radius: 50px;
-            margin-bottom: 3px
+            margin-bottom: 3px;
+
+            span{
+                @include hidden
+            }
         }
     }
 
@@ -140,14 +184,28 @@ body{
 
         .player{
             @include text-center;
+            @include relative;
             flex: 1 1 auto;
+
+            div:not(.player-placeholder){
+                @include relative;
+                padding-bottom: 56.25%;
+
+                iframe{
+                    @include absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%
+                }
+            }
 
             .player-placeholder{
                 @include centered-flex;
                 @include rounded;
                 flex-direction: column;
                 background-color: $secondary;
-                height: 100%;
+                padding: 1rem;
 
                 fa-icon{
                     font-size: 50px

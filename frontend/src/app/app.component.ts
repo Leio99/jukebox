@@ -19,7 +19,7 @@ export class AppComponent extends Subscriptable implements AfterViewInit{
     private translateService = inject(TranslateService)
 
     private readonly streams = [
-        this.translateService.loadFromStorage$().pipe(map(() => this.translateService.translate("starting.login")))
+        this.translateService.loadFromStorage$().pipe(map(() => this.translateService.translate("starting.translations")))
     ]
 
     constructor(private injector: Injector, router: Router, storeService: StoreService){
